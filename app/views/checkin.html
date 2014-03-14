@@ -24,10 +24,10 @@
       <div class="starter-template">
         <h1>Check In</h1>
         <input type="text" class="form-control" placeholder="Patient Name" ng-model="patient.name"  ng-keydown="addPatient($event)">
-        <input type="text" class="form-control" placeholder="Time In" ng-model="patient.date" ng-keydown="addDate($event)">
-  		<input type="text" class="form-control" placeholder="Time Out">
-  		<input type="text" class="form-control" placeholder="Date">
-  		<input type="text" class="form-control" placeholder="Therapist">
+        <input type="text" class="form-control" placeholder="Date" ng-model="patient.date" ng-keydown="addDate($event)">
+        <input type="text" class="form-control" placeholder="Time In" ng-model="patient.timeIn" ng-keydown="addTimeIn($event)">
+  		  <input type="text" class="form-control" placeholder="Time Out">
+  		  <input type="text" class="form-control" placeholder="Therapist">
       </div>
 
     </div><!-- /.container -->
