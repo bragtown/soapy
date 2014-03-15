@@ -7,7 +7,9 @@ angular.module('soapyApp')
   	$scope.patient = {
   		name: "",
       date: "",
-      timeIn:""
+      timeIn:"",
+      timeOut:"",
+      Therapist:""
   	};
   	$scope.addPatient = function(e){
     	if(e.keyCode !== 13) {
@@ -52,18 +54,49 @@ angular.module('soapyApp')
     $scope.addTimeIn = function(e){
      if(e.keyCode !== 13) {
         return;
-      };
-      $scope.passCurrentRef.on('value', function (snapshot){
-          $scope.currentVisit = snapshot.exportVal();
-        }); 
-      var patientVisit = $scope.currentVisit;
-      console.log(patientVisit);
-      var patientId = $scope.passId;
-      console.log(patientId);
-      var visitRef = new Firebase('https://soapnotes.firebaseIO.com/patients/'+patientId+'/'+patientVisit);  
-      $scope.patientVisit = $firebase(visitRef);
-      $scope.patientVisit.$add({
-        timeIn:$scope.patient.timeIn
-      });
-    }
+     };
+     var patientId = $scope.currentPatient;
+     var currentRef = new Firebase('https://soapnotes.firebaseIO.com/patients/'+patientId);
+     // var i = 0;
+     //  currentRef.on('value', function (snapshot){
+     //    snapshot.forEach(function (childSnapshot){
+     //      console.log(childSnapshot.exportVal().visit);
+     //      if(childSnapshot.exportVal().visit === $scope.patient.date){
+     //        $scope.flipper = true;
+     //        console.log($scope.flipper);
+     //      };
+     //      i++;
+     //    });
+     //    return;
+     //  }); this is the beginning of querring stuff.
+     var myPatient = $firebase(currentRef);
+     var visitId = myPatient.$getIndex();
+     var visitpleasework = visitId[(visitId.length-2)];
+     var visitRef = new Firebase('https://soapnotes.firebaseIO.com/patients/'+patientId+'/'+visitpleasework);
+     visitRef.push({TimeIn:$scope.patient.timeIn});
+    };
+    $scope.addTimeOut = function(e){
+     if(e.keyCode !== 13) {
+        return;
+     };
+     var patientId = $scope.currentPatient;
+     var currentRef = new Firebase('https://soapnotes.firebaseIO.com/patients/'+patientId);
+     var myPatient = $firebase(currentRef);
+     var visitId = myPatient.$getIndex();
+     var visitpleasework = visitId[(visitId.length-2)];
+     var visitRef = new Firebase('https://soapnotes.firebaseIO.com/patients/'+patientId+'/'+visitpleasework);
+     visitRef.push({TimeIn:$scope.patient.timeOut});
+    };
+    $scope.addTherapist = function(e){
+     if(e.keyCode !== 13) {
+        return;
+     };
+     var patientId = $scope.currentPatient;
+     var currentRef = new Firebase('https://soapnotes.firebaseIO.com/patients/'+patientId);
+     var myPatient = $firebase(currentRef);
+     var visitId = myPatient.$getIndex();
+     var visitpleasework = visitId[(visitId.length-2)];
+     var visitRef = new Firebase('https://soapnotes.firebaseIO.com/patients/'+patientId+'/'+visitpleasework);
+     visitRef.push({TimeIn:$scope.patient.Therapist});
+    };
 });
