@@ -23,6 +23,7 @@ angular.module('soapyApp')
           if (boolName){
             $scope.addName = true;
             $scope.currentPatient = patientList[patient];
+            console.log($scope.currentPatient);
           };
         });
       };
@@ -32,6 +33,7 @@ angular.module('soapyApp')
       	});
         patientList = $scope.patients.$getIndex();
         $scope.currentPatient = patientList[(patientList.length-1)];
+        console.log($scope.currentPatient);
       };
     };
     $scope.addDate = function(e){
@@ -47,6 +49,7 @@ angular.module('soapyApp')
       var currentRef = new Firebase('https://soapnotes.firebaseIO.com/patients/'+patientId);
       $scope.passCurrentRef = currentRef;
       $scope.currentPatient = $firebase(currentRef);
+      console.log($scope.currentPatient);
       $scope.currentPatient.$add({
         visit:$scope.patient.date
       }); 
@@ -56,6 +59,7 @@ angular.module('soapyApp')
         return;
      };
      var patientId = $scope.currentPatient;
+     console.log(patientId);
      var currentRef = new Firebase('https://soapnotes.firebaseIO.com/patients/'+patientId);
      // var i = 0;
      //  currentRef.on('value', function (snapshot){
@@ -97,6 +101,6 @@ angular.module('soapyApp')
      var visitId = myPatient.$getIndex();
      var visitpleasework = visitId[(visitId.length-2)];
      var visitRef = new Firebase('https://soapnotes.firebaseIO.com/patients/'+patientId+'/'+visitpleasework);
-     visitRef.push({TimeIn:$scope.patient.Therapist});
+     visitRef.push({Therapist:$scope.patient.Therapist});
     };
 });

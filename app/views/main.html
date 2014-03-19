@@ -23,9 +23,15 @@
 
       <div class="starter-template">
         <h1>Daily Notes</h1>
-        <ul>
-          <li><a href = "#subjective">ng-repeat unfinished notes here</a></li>
+        <ul class = "myPatients">
+          <li class = "list-unstyled" ng-repeat='(id, name) in patients' ng-click ='patientVisits(id)'><a class = "list-group-item">{{name.body}}</a>
+          </li>
         </ul>
+        <div class = "patientVisits">
+          <ul>
+            <li  class = "list-unstyled" ng-repeat = '(id, visit) in myPatient'><a class = "list-group-item" ng-dblclick = "currentVisit(id)">{{visit.visit}}</a></li>
+          </ul>
+        </div>
       </div>
 
     </div><!-- /.container -->

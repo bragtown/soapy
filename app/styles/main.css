@@ -6,6 +6,13 @@
 body {
   padding-top: 50px;
 }
+.myPatients, .patientVisits{
+  display: inline-block;
+  width: 49%;
+}
+.patientVisits ul li:last-child{
+  display: none
+}
 
 .lower {
   padding-top: 4em;
