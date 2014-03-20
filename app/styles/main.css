@@ -6,6 +6,9 @@
 body {
   padding-top: 50px;
 }
+.makeGreen{
+  background-color: rgba(127,255,0,.5);
+}
 .myPatients, .patientVisits{
   display: inline-block;
   width: 49%;
