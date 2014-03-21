@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('soapyApp')
-  .controller('PlanCtrl', function ($scope, $firebase, Passid) {
+  .	controller('PlanCtrl', function ($scope, $firebase, Passid) {
     $scope.addPlan = function (e){
   			if(e.keyCode !== 13) {
     		return;

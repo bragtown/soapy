@@ -31,6 +31,10 @@ angular.module('soapyApp', [
         templateUrl: 'views/assessment.html',
         controller: 'AssessmentCtrl'
       })
+      .when('/evaluation', {
+        templateUrl: 'views/evaluation.html',
+        controller: 'EvaluationCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

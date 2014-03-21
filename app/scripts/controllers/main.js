@@ -8,16 +8,24 @@ angular.module('soapyApp')
 		$scope.patientId = id;
 		var patientRef = new Firebase('https://soapnotes.firebaseIO.com/patients/' + id);
 		$scope.myPatient = $firebase(patientRef);
-		// $scope.visitId = $scope.myPatient.$getIndex();
-		// $scope.visitRefs = [];
-		// for (var visit in $scope.visitId){
-		// 	var visitRef = new Firebase('https://soapnotes.firebaseIO.com/patients/' + id +'/'+ $scope.visitId[visit]);
-		// 	$scope.visitRefs.push($firebase(visitRef));
-		// };
 	};
 	$scope.currentVisit = function (id){
 		var visitId = $scope.patientId + '/'+id;
 		Passid.setID(visitId);
 		$location.path('/subjective');
 	};
+
+	var patientNames = [];//have html pull form here and another visit array instead of firebase
+    patientsRef.on('value', function (snapshot){
+      snapshot.forEach(function (childsnapshot){
+      	//if childsnapshot.val().upToDate === true{
+        patientNames.push(childsnapshot.val().body);
+        childsnapshot.forEach(function (grandchildsnapshot){
+        	// if grandchildsnapshot.val().complete === true{
+        		//add grandchildsnapshot.val().date to an array.
+    		//}
+        });
+        //}
+      });
+    });
 });

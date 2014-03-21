@@ -14,6 +14,8 @@
             <li class="active"><a href="#">Daily Notes</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#checkin">Check In</a></li>
+            <li class = "login"><input type="email" class="form-control" id="exampleInputEmail1" placeholder="Login: Enter email"></li>
+            <li class = "login"><input type="password" class="form-control" id="exampleInputPassword1" placeholder="Login: Password"></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -29,9 +31,10 @@
         </ul>
         <div class = "patientVisits">
           <ul>
-            <li  class = "list-unstyled" ng-repeat = '(id, visit) in myPatient'><a class = "list-group-item" ng-dblclick = "currentVisit(id)">{{visit.visit}}</a></li>
+            <li  class = "list-unstyled" ng-repeat = '(id, visit) in myPatient | filter:{myPatient:visit}'><a class = "list-group-item" ng-dblclick = "currentVisit(id)">{{visit.visit}}</a></li>
           </ul>
         </div>
       </div>
+
 
     </div><!-- /.container -->

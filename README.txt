@@ -9,7 +9,6 @@ Checkin
 
 Daily Notes
 -optomize for mobile
--make patient visits move to the top
 -keep finished notes/patients from appearing (maybe use a finish tolken)
 
 SOAP
