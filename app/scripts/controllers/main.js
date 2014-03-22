@@ -14,18 +14,19 @@ angular.module('soapyApp')
 		Passid.setID(visitId);
 		$location.path('/subjective');
 	};
-
-	var patientNames = [];//have html pull form here and another visit array instead of firebase
-    patientsRef.on('value', function (snapshot){
-      snapshot.forEach(function (childsnapshot){
-      	//if childsnapshot.val().upToDate === true{
-        patientNames.push(childsnapshot.val().body);
-        childsnapshot.forEach(function (grandchildsnapshot){
-        	// if grandchildsnapshot.val().complete === true{
-        		//add grandchildsnapshot.val().date to an array.
-    		//}
-        });
-        //}
-      });
-    });
+	
+	// var patientNames = [];
+	// var visits = [];
+ //    patientsRef.on('value', function (snapshot){
+ //      snapshot.forEach(function (childsnapshot){
+ //      	if childsnapshot.val().upToDate === true{
+	//         patientNames.push(childsnapshot.val().body);
+	//         childsnapshot.forEach(function (grandchildsnapshot){
+	//         	if grandchildsnapshot.val().subComplete === true{
+	//         		visits.push(grandchildsnapshot.val().subComplete)
+	//     		}
+	//         });
+ //        }
+ //      });
+ //    });
 });

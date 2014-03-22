@@ -9,8 +9,8 @@ body {
 .makeGreen{
   background-color: rgba(127,255,0,.5);
 }
-.login{
-  margin:.4em;
+.loginForm{
+  margin-top: 5em;
 }
 .myPatients, .patientVisits{
   display: inline-block;
