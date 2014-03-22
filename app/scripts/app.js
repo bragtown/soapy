@@ -3,7 +3,8 @@
 angular.module('soapyApp', [
   'ngSanitize',
   'ngRoute',
-  'firebase'
+  'firebase',
+  'ui.bootstrap'
 ])
   .config(function ($routeProvider) {
     $routeProvider
