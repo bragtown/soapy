@@ -20,9 +20,9 @@ body {
   width: 49%;
   float: left;
 }
-.patientVisits ul li:last-child{
+/*.patientVisits ul li:last-child{
   display: none
-}
+}*/
 
 .lower {
   padding-top: 4em;

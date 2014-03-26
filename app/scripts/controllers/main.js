@@ -8,6 +8,15 @@ angular.module('soapyApp')
 		$scope.patientId = id;
 		var patientRef = new Firebase('https://soapnotes.firebaseIO.com/patients/' + id);
 		$scope.myPatient = $firebase(patientRef);
+		$scope.myPatientVisits = []
+		patientRef.on('value', function (snapshot){
+			snapshot.forEach(function (childsnapshot){
+				if(childsnapshot.val().visit){
+					$scope.myPatientVisits.push([childsnapshot.ref().name(), childsnapshot.val().visit]);
+				}
+			});
+		});
+		console.log($scope.myPatientVisits);
 	};
 	$scope.currentVisit = function (id){
 		var visitId = $scope.patientId + '/'+id;

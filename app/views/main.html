@@ -30,7 +30,7 @@
         </ul>
         <div class = "patientVisits">
           <ul>
-            <li  class = "list-unstyled" ng-repeat = '(id, visit) in myPatient | filter:{myPatient:visit}'><a class = "list-group-item" ng-dblclick = "currentVisit(id)">{{visit.visit}}</a></li>
+            <li  class = "list-unstyled" ng-repeat = 'visit in myPatientVisits'><a class = "list-group-item" ng-dblclick = "currentVisit(visit[0])">{{visit[1]}}</a></li>
           </ul>
         </div>
       </div>
