@@ -25,29 +25,36 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
-    <!-- date of birth box, injury box, and other stuff -->
-    
-    <h4>Popup</h4>
-    <div class="row">
-        <div class="col-md-6">
-            <p class="input-group">
-              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-              <span class="input-group-btn">
-                <button class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-            </p>
+    <!-- date of birth box, injury box, and other stuff in collapsables-->
+    <div class = "evalBtns">
+        <button class="btn btn-default" ng-click="isDOBCollapsed = !isDOBCollapsed">Date Of Birth</button>
+        <button class = "btn btn-default" ng-click = "isInjuryCollapsed = !isInjuryCollapsed">Injury/Condition</button>
+        <button class = "btn btn-default" ng-click = "isGoalsCollapsed = !isGoalsCollapsed">Goals</button>
+        <hr>
+        <div collapse="isGoalsCollapsed">
+          <input type="text" class="form-control" placeholder="Goal" ng-keydown="addGoal($event)" ng-model = "goal">
+          <p></p>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <label>Format:</label> <select class="form-control" ng-model="format" ng-options="f for f in formats"><option></option></select>
+        <div collapse="isInjuryCollapsed">
+          <input type="text" class="form-control" placeholder="Injury/Condition" ng-keydown="setInjury($event)" ng-model = "condition">
         </div>
-    </div>
+        <div collapse="isDOBCollapsed">
+          <div class="well well-lg">
+          <h4>Popup</h4>
+          <div class="row">
+              <div class="col-md-6">
+                  <p class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" ng-model="DOB" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                  </p>
+                </div>
+              </div>
+       
+              <button class="btn btn-sm btn-info" ng-click="today()">Today</button>
+              <button class="btn btn-sm btn-default" ng-click="dt = '2009-08-24'">2009-08-24</button>
+              <button class="btn btn-sm btn-success" ng-click = "setBirthDate()">select</button>
+            </div>
+          </div>
+      </div>
 
-    <hr />
-    <button class="btn btn-sm btn-info" ng-click="today()">Today</button>
-    <button class="btn btn-sm btn-default" ng-click="dt = '2009-08-24'">2009-08-24</button>
-    <button class="btn btn-sm btn-success" ng-click="toggleWeeks()" tooltip="For inline datepicker">Toggle Weeks</button>
-    <button class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
-    <button class="btn btn-sm btn-default" ng-click="toggleMin()" tooltip="After today restriction">Min date</button>
 </div>
+

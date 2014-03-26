@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('soapyApp')
-  .controller('LoginCtrl', function ($scope, $firebase, $firebaseSimpleLogin) {
+  .controller('LoginCtrl', function ($scope, $firebase, $firebaseSimpleLogin, $location) {
   	$scope.email = null;
   	$scope.password = null;
   	$scope.submit = function(){
@@ -9,8 +9,18 @@ angular.module('soapyApp')
 		var auth = new FirebaseSimpleLogin(soapRef, function(error, user) {
 			auth.login('password', {
 	  			email: $scope.email,
-	  			password: $scope.password
+	  			password: $scope.password,
+	  			rememberMe: true
 			});
 		});
+		if (auth != null){
+			$location.path('/main');
+		};
+	};
+	$scope.password = function(e){
+		if(e.keyCode !== 13) {
+    		  return;
+		};
+		$scope.submit;
 	};
   });

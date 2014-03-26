@@ -16,6 +16,7 @@ angular.module('soapyApp')
         },
         setPatient: function(value) {
             patient = value;
+            console.log(value);
         }
     };
   });

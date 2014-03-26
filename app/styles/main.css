@@ -6,6 +6,9 @@
 body {
   padding-top: 50px;
 }
+.evalBtns{
+  margin-top: 3em;
+}
 .makeGreen{
   background-color: rgba(127,255,0,.5);
 }

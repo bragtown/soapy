@@ -12,6 +12,8 @@ angular.module('soapyApp')
 	$scope.currentVisit = function (id){
 		var visitId = $scope.patientId + '/'+id;
 		Passid.setID(visitId);
+		Passid.setPatient($scope.patientId);
+		console.log($scope.patientId);
 		$location.path('/subjective');
 	};
 	
