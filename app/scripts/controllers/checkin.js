@@ -6,9 +6,6 @@ angular.module('soapyApp')
   	$scope.patients = $firebase(patientRef);
   	$scope.patient = {
   		name: "",
-      date: "",
-      timeIn:"",
-      timeOut:"",
       Therapist:""
   	};
 
@@ -37,7 +34,6 @@ angular.module('soapyApp')
      if (getID()){
       $scope.currentPatient = getID();
       $scope.patientIn = true;
-      console.log(getID());
      }
      else{
       $scope.patients.$add({
@@ -47,14 +43,21 @@ angular.module('soapyApp')
       $scope.currentPatient = getID();
       $scope.patientIn = true;
      };
+
      //if patientRef already contains patient, store the patients id.
      //if it does not, create a new patient and store its id.
    };
-    $scope.addDate = function(){
+    $scope.addDate = function(e){
+      if (e){
+       if(e.keyCode !== 13) {
+        return;
+       };
+      }
       var visitRef = new Firebase('https://soapnotes.firebaseIO.com/patients/'+$scope.currentPatient);
       var myVisit = $firebase(visitRef);
+      var simpleDate = ($scope.dt.getMonth()+1).toString()+'/'+$scope.dt.getDate().toString()+'/'+$scope.dt.getYear().toString();
       myVisit.$add({
-        visit: $scope.dt.toString()
+        visit: simpleDate
       });
       var visitNumber = 0;
       visitRef.on('value', function (snapshot){
@@ -62,11 +65,12 @@ angular.module('soapyApp')
           visitNumber = snapshot.val().visitNumber;
         };
         snapshot.forEach(function (childsnapshot){
-          if (childsnapshot.val().visit === $scope.patient.date){
+          if (childsnapshot.val().visit === simpleDate){
             $scope.currentVisit = childsnapshot.name();
           };
         });
       });
+      console.log($scope.currentVisit);
       $scope.visitAddress = ('https://soapnotes.firebaseIO.com/patients/'+$scope.currentPatient+'/'+$scope.currentVisit);
       $scope.visitAdded = true;
 
@@ -76,21 +80,16 @@ angular.module('soapyApp')
     };
 
     $scope.addTimeIn = function(e){
-     if(e.keyCode !== 13) {
-        return;
-     };
      var myVisit = $scope.visitAddress;
+     console.log(myVisit);
      var timeInRef = new Firebase(myVisit+'/timeIn');
-     timeInRef.set($scope.patient.timeIn);
+     timeInRef.set($scope.mytime1.getHours().toString()+"."+$scope.mytime1.getMinutes().toString());
    };
 
-   $scope.addTimeOut = function(e){
-     if(e.keyCode !== 13) {
-        return;
-     };
+   $scope.addTimeOut = function(){
      var myVisit = $scope.visitAddress;
      var timeOutRef = new Firebase(myVisit+'/timeOut');
-     timeOutRef.set($scope.patient.timeOut);
+     timeOutRef.set($scope.mytime2.getHours().toString()+"."+$scope.mytime2.getMinutes().toString());
    };
 
    $scope.addTherapist = function(e){
@@ -153,4 +152,38 @@ angular.module('soapyApp')
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
   $scope.format = $scope.formats[2];
   //end datepicker js
+
+  //timepicker js
+
+  $scope.mytime1 = new Date();
+  $scope.mytime1 = new Date();
+
+  $scope.hstep = 1;
+  $scope.mstep = 15;
+
+  $scope.options = {
+    hstep: [1, 2, 3],
+    mstep: [1, 5, 10, 15, 25, 30]
+  };
+
+  $scope.ismeridian = true;
+  $scope.toggleMode = function() {
+    $scope.ismeridian = ! $scope.ismeridian;
+  };
+
+  $scope.update = function() {
+    var d = new Date();
+    d.setHours( 14 );
+    d.setMinutes( 0 );
+    $scope.mytime = d;
+  };
+
+  $scope.changed = function () {
+    console.log('Time changed to: ' + $scope.mytime);
+  };
+
+  $scope.clear = function() {
+    $scope.mytime = null;
+  };
+  //end timepicker js
 });

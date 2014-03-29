@@ -6,6 +6,9 @@
 body {
   padding-top: 50px;
 }
+.times{
+  margin: 2em;
+}
 .evalBtns{
   margin-top: 3em;
 }

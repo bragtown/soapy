@@ -31,7 +31,7 @@
           <div class="row">
               <div class="col-md-6">
                   <p class="input-group">
-                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" ng-model="DOB" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" ng-model="DOB" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-keydown = "addDate($event)" />
                   </p>
               </div>
           </div>
@@ -40,11 +40,24 @@
           <button class="btn btn-sm btn-success" ng-click = "addDate()">select</button>
         </div>
 
-        <input type="text" class="form-control" ng-show = "visitAdded" placeholder="Time In" ng-model="patient.timeIn" ng-keydown="addTimeIn($event)">
+        <div ng-show = "visitAdded">
+          
+          <div ng-model="mytime1" ng-change="changed()" style="display:inline-block;" class = "well times">
+            <h4>Time In</h4>
+            <timepicker hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+            <button class="btn btn-sm btn-success" ng-click = "addTimeIn()">select</button>
+          </div>
 
-  		  <input type="text" class="form-control" ng-show = "visitAdded" placeholder="Time Out" ng-model="patient.timeOut" ng-keydown="addTimeOut($event)">
+          
+          <div ng-model="mytime2" ng-change="changed()" style="display:inline-block;" class = "well times">
+            <h4>Time Out</h4>
+            <timepicker hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+            <button class="btn btn-sm btn-success" ng-click = "addTimeOut()">select</button>
+          </div>
 
-  		  <input type="text" class="form-control" ng-show = "visitAdded" placeholder="Therapist" ng-model="patient.Therapist" ng-keydown="addTherapist($event)">
+          <input type="text" class="form-control" ng-show = "visitAdded" placeholder="Therapist" ng-model="patient.Therapist" ng-keydown="addTherapist($event)">
+        </div>
+  		  
 
       </div>
 
