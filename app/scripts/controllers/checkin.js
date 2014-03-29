@@ -50,14 +50,11 @@ angular.module('soapyApp')
      //if patientRef already contains patient, store the patients id.
      //if it does not, create a new patient and store its id.
    };
-    $scope.addDate = function(e){
-      if(e.keyCode !== 13) {
-        return;
-      };
+    $scope.addDate = function(){
       var visitRef = new Firebase('https://soapnotes.firebaseIO.com/patients/'+$scope.currentPatient);
       var myVisit = $firebase(visitRef);
       myVisit.$add({
-        visit: $scope.patient.date
+        visit: $scope.dt.toString()
       });
       var visitNumber = 0;
       visitRef.on('value', function (snapshot){
@@ -119,4 +116,41 @@ angular.module('soapyApp')
 //         });
 //       });
 //     });
+
+//datepicker js
+  $scope.today = function() {
+    $scope.dt = new Date();
+  };
+  $scope.today();
+
+  $scope.showWeeks = true;
+  $scope.toggleWeeks = function () {
+    $scope.showWeeks = ! $scope.showWeeks;
+  };
+
+  $scope.clear = function () {
+    $scope.dt = null;
+  };
+
+  // Disable weekend selection
+  $scope.enabled = function(date, mode) {
+    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+  };
+
+  
+
+  $scope.open = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    $scope.opened = true;
+  };
+
+  $scope.dateOptions = {
+    'year-format': "'yy'",
+    'starting-day': 1
+  };
+  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
+  $scope.format = $scope.formats[2];
+  //end datepicker js
 });

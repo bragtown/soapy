@@ -50,7 +50,6 @@ angular.module('soapyApp')
     if(e.keyCode !== 13) {
           return;
     };
-    console.log('this is happening')
     var goalRef = new Firebase("https://soapnotes.firebaseIO.com/patients/" + patientID + "/goals");
     goalRef.push($scope.goal);
   }
