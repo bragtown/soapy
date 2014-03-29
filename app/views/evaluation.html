@@ -33,7 +33,7 @@
         <hr>
         <div collapse="isGoalsCollapsed">
           <input type="text" class="form-control" placeholder="Goal" ng-keydown="addGoal($event)" ng-model = "goal">
-          <p></p>
+          <p ng-repeat = "goal in patientGoals">{{goal[0]}}</p>
         </div>
         <div collapse="isInjuryCollapsed">
           <input type="text" class="form-control" placeholder="Injury/Condition" ng-keydown="setInjury($event)" ng-model = "condition">

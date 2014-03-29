@@ -11,17 +11,314 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Daily Notes</a></li>
+            <li><a href="#">Daily Notes</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#checkin">Check In</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href ="#evaluation">Evaluation</a></li>
             <li><a href="#subjective">Subjective</a></li>
-            <li><a href="#objective">Objective</a></li>
+            <li class="active"><a href="#objective">Objective</a></li>
             <li><a href="#assessment">Assessment</a></li>
             <li><a href="#plan">Plan</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
+    <label class="checkbox">
+      <input type="checkbox" ng-model="oneAtATime">
+      Open only one at a time
+    </label>
+
+    <accordion close-others="oneAtATime">
+      <accordion-group heading="Goals" is-open="true">
+        <p ng-repeat = "goal in goals">{{goal}}</p>
+      </accordion-group>
+      <accordion-group heading="Progress to Goals" ng-show = "isInterval"is-open="true">
+        <input  type="text" class="form-control" placeholder="Progress" ng-model = "inProgress" ng-keydown = "addProgress($event, inProgress)"></input>
+        <br>
+        <p ng-repeat = "progress in patientProgress">{{progress[0]}}</p>
+      </accordion-group>
+      <accordion-group heading="Gait" is-open="true">
+        <form name="myForm" ng-model='patientDistance'>
+          Distance: <input ng-model = "value" type="number" name="input" ng-keydown = "setDistance($event, value)"
+                         min="0" max="1000" required>
+          <span class="error" ng-show="myForm.input.$error.number">
+            Not valid number!</span>
+        </form>
+
+        <div class="btn-group addTopMargin">
+          <input ng-model = "myDevice" ng-keydown = "custDevice($event, myDevice)"></input>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Device
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li role="presentation" ng-repeat = "device in devices" ng-click = "aDevice(device)"><a>{{device}}</a></li>
+          </ul>
+        </div>
+
+        <div class="btn-group addTopMargin">
+          <input ng-model = "myAssist" ng-keydown = "custDevice($event, myAssist)"></input>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Assist
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li role="presentation" ng-repeat = "assist in assists" ng-click = "aAssist(assist)"><a>{{assist}}</a></li>
+          </ul>
+        </div>
+
+        <div class="btn-group addTopMargin">
+          <input ng-model = "myGaitDescription" ng-keydown = "custGaitDescription($event, myGaitDescription)"></input>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Description
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li role="presentation" ng-repeat = "descript in GaitDescriptions" ng-click = "aGaitDescription(descript)"><a>{{descript}}</a></li>
+          </ul>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </accordion-group>
+      <accordion-group heading="Theraputic Exercises" is-open="true">
+
+        <div class="btn-group addTopMargin">
+          <input ng-model = "myDevice" ng-keydown = "custDevice($event, myDevice)"></input>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li role="presentation" ng-repeat = "device in devices" ng-click = "aDevice(device)"><a>{{device}}</a></li>
+          </ul>
+        </div>
+
+        <div class="btn-group addTopMargin">
+          <input ng-model = "myDevice" ng-keydown = "custDevice($event, myDevice)"></input>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li role="presentation" ng-repeat = "device in devices" ng-click = "aDevice(device)"><a>{{device}}</a></li>
+          </ul>
+        </div>
+        
+        <div class="btn-group addTopMargin">
+          <input ng-model = "myDevice" ng-keydown = "custDevice($event, myDevice)"></input>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li role="presentation" ng-repeat = "device in devices" ng-click = "aDevice(device)"><a>{{device}}</a></li>
+          </ul>
+        </div>
+        
+        <div class="btn-group addTopMargin">
+          <input ng-model = "myDevice" ng-keydown = "custDevice($event, myDevice)"></input>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li role="presentation" ng-repeat = "device in devices" ng-click = "aDevice(device)"><a>{{device}}</a></li>
+          </ul>
+        </div>
+        
+        <div class="btn-group addTopMargin">
+          <input ng-model = "myDevice" ng-keydown = "custDevice($event, myDevice)"></input>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li role="presentation" ng-repeat = "device in devices" ng-click = "aDevice(device)"><a>{{device}}</a></li>
+          </ul>
+        </div>
+        
+        <div class="btn-group addTopMargin">
+          <input ng-model = "myDevice" ng-keydown = "custDevice($event, myDevice)"></input>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li role="presentation" ng-repeat = "device in devices" ng-click = "aDevice(device)"><a>{{device}}</a></li>
+          </ul>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </accordion-group>
+      <accordion-group heading="Balance" is-open="true">
+
+        <div class="btn-group addTopMargin">
+          <input ng-model = "myDevice" ng-keydown = "custDevice($event, myDevice)"></input>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li role="presentation" ng-repeat = "device in devices" ng-click = "aDevice(device)"><a>{{device}}</a></li>
+          </ul>
+        </div>
+
+        <div class="btn-group addTopMargin">
+          <input ng-model = "myDevice" ng-keydown = "custDevice($event, myDevice)"></input>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li role="presentation" ng-repeat = "device in devices" ng-click = "aDevice(device)"><a>{{device}}</a></li>
+          </ul>
+        </div>
+        
+        <div class="btn-group addTopMargin">
+          <input ng-model = "myDevice" ng-keydown = "custDevice($event, myDevice)"></input>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li role="presentation" ng-repeat = "device in devices" ng-click = "aDevice(device)"><a>{{device}}</a></li>
+          </ul>
+        </div>
+        
+        <div class="btn-group addTopMargin">
+          <input ng-model = "myDevice" ng-keydown = "custDevice($event, myDevice)"></input>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li role="presentation" ng-repeat = "device in devices" ng-click = "aDevice(device)"><a>{{device}}</a></li>
+          </ul>
+        </div>
+        
+        <div class="btn-group addTopMargin">
+          <input ng-model = "myDevice" ng-keydown = "custDevice($event, myDevice)"></input>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li role="presentation" ng-repeat = "device in devices" ng-click = "aDevice(device)"><a>{{device}}</a></li>
+          </ul>
+        </div>
+        
+        <div class="btn-group addTopMargin">
+          <input ng-model = "myDevice" ng-keydown = "custDevice($event, myDevice)"></input>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li role="presentation" ng-repeat = "device in devices" ng-click = "aDevice(device)"><a>{{device}}</a></li>
+          </ul>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </accordion-group><accordion-group heading="Transfers" is-open="true">
+
+        <div class="btn-group addTopMargin">
+          <input ng-model = "myDevice" ng-keydown = "custDevice($event, myDevice)"></input>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li role="presentation" ng-repeat = "device in devices" ng-click = "aDevice(device)"><a>{{device}}</a></li>
+          </ul>
+        </div>
+
+        <div class="btn-group addTopMargin">
+          <input ng-model = "myDevice" ng-keydown = "custDevice($event, myDevice)"></input>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li role="presentation" ng-repeat = "device in devices" ng-click = "aDevice(device)"><a>{{device}}</a></li>
+          </ul>
+        </div>
+        
+        <div class="btn-group addTopMargin">
+          <input ng-model = "myDevice" ng-keydown = "custDevice($event, myDevice)"></input>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li role="presentation" ng-repeat = "device in devices" ng-click = "aDevice(device)"><a>{{device}}</a></li>
+          </ul>
+        </div>
+        
+        <div class="btn-group addTopMargin">
+          <input ng-model = "myDevice" ng-keydown = "custDevice($event, myDevice)"></input>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li role="presentation" ng-repeat = "device in devices" ng-click = "aDevice(device)"><a>{{device}}</a></li>
+          </ul>
+        </div>
+        
+        <div class="btn-group addTopMargin">
+          <input ng-model = "myDevice" ng-keydown = "custDevice($event, myDevice)"></input>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li role="presentation" ng-repeat = "device in devices" ng-click = "aDevice(device)"><a>{{device}}</a></li>
+          </ul>
+        </div>
+        
+        <div class="btn-group addTopMargin">
+          <input ng-model = "myDevice" ng-keydown = "custDevice($event, myDevice)"></input>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li role="presentation" ng-repeat = "device in devices" ng-click = "aDevice(device)"><a>{{device}}</a></li>
+          </ul>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </accordion-group>
+    </accordion>

@@ -13,7 +13,7 @@
           <ul class="nav navbar-nav">
             <li><a href="#">Daily Notes</a></li>
             <li><a href="#about">About</a></li>
-            <li class="active"><a href="#contact">Check In</a></li>
+            <li class="active"><a href="#checkin">Check In</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -24,10 +24,10 @@
       <div class="starter-template">
         <h1>Check In</h1>
         <input type="text" class="form-control" placeholder="Patient Name" ng-model="patient.name"  ng-keydown="addPatient($event)">
-        <input type="text" class="form-control" placeholder="Date" ng-model="patient.date" ng-keydown="addDate($event)">
-        <input type="text" class="form-control" placeholder="Time In" ng-model="patient.timeIn" ng-keydown="addTimeIn($event)">
-  		  <input type="text" class="form-control" placeholder="Time Out" ng-model="patient.timeOut" ng-keydown="addTimeOut($event)">
-  		  <input type="text" class="form-control" placeholder="Therapist" ng-model="patient.Therapist" ng-keydown="addTherapist($event)">
+        <input type="text" class="form-control" ng-show = "patientIn"placeholder="Date" ng-model="patient.date" ng-keydown="addDate($event)">
+        <input type="text" class="form-control" ng-show = "visitAdded" placeholder="Time In" ng-model="patient.timeIn" ng-keydown="addTimeIn($event)">
+  		  <input type="text" class="form-control" ng-show = "visitAdded" placeholder="Time Out" ng-model="patient.timeOut" ng-keydown="addTimeOut($event)">
+  		  <input type="text" class="form-control" ng-show = "visitAdded" placeholder="Therapist" ng-model="patient.Therapist" ng-keydown="addTherapist($event)">
       </div>
 
     </div><!-- /.container -->
